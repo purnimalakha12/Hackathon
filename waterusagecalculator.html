@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Usage Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            color: #333;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            border: 1px solid #007bff;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            transition: border 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+            border-top: 1px solid #007bff;
+            padding-top: 15px;
+        }
+        .results h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Water Usage Calculator</h1>
+
+    <label for="familyMembers">Number of Family Members:</label>
+    <input type="number" id="familyMembers" min="1" required>
+
+    <label for="monday">Monday (liters):</label>
+    <input type="number" id="monday" required>
+
+    <label for="tuesday">Tuesday (liters):</label>
+    <input type="number" id="tuesday" required>
+
+    <label for="wednesday">Wednesday (liters):</label>
+    <input type="number" id="wednesday" required>
+
+    <label for="thursday">Thursday (liters):</label>
+    <input type="number" id="thursday" required>
+
+    <label for="friday">Friday (liters):</label>
+    <input type="number" id="friday" required>
+
+    <label for="saturday">Saturday (liters):</label>
+    <input type="number" id="saturday" required>
+
+    <label for="sunday">Sunday (liters):</label>
+    <input type="number" id="sunday" required>
+
+    <button onclick="calculateWaterUsage()">Calculate</button>
+
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+    function calculateWaterUsage() {
+        const familyMembers = parseInt(document.getElementById('familyMembers').value) || 1;
+        const monday = parseFloat(document.getElementById('monday').value) || 0;
+        const tuesday = parseFloat(document.getElementById('tuesday').value) || 0;
+        const wednesday = parseFloat(document.getElementById('wednesday').value) || 0;
+        const thursday = parseFloat(document.getElementById('thursday').value) || 0;
+        const friday = parseFloat(document.getElementById('friday').value) || 0;
+        const saturday = parseFloat(document.getElementById('saturday').value) || 0;
+        const sunday = parseFloat(document.getElementById('sunday').value) || 0;
+
+        const totalWeeklyUsage = monday + tuesday + wednesday + thursday + friday + saturday + sunday;
+        const averageDailyUsage = totalWeeklyUsage / 7;
+
+        // Calculate the baseline average daily usage based on the number of family members
+        const baselineAverage = familyMembers * 100; // 100 liters per family member
+        const totalAverageUsage = baselineAverage * 7; // Weekly average
+
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `
+            <h2>Results</h2>
+            <p>Total Water Usage for the Week: ${totalWeeklyUsage.toFixed(2)} liters</p>
+            <p>Average Daily Water Usage: ${averageDailyUsage.toFixed(2)} liters</p>
+            <p>Baseline Average Daily Usage for ${familyMembers} family members: ${baselineAverage.toFixed(2)} liters</p>
+        `;
+
+        if (averageDailyUsage > baselineAverage) {
+            resultsDiv.innerHTML += '<p style="color: red;">Your water usage is higher than average. Consider checking for leaks or adopting water-saving habits.</p>';
+        } else if (averageDailyUsage < baselineAverage - 200) {
+            resultsDiv.innerHTML += '<p style="color: green;">Great job! Your water usage is below average. Keep up the good work conserving water!</p>';
+        } else {
+            resultsDiv.innerHTML += '<p>Your water usage is within a typical range. Consider some additional water-saving measures if you’d like to reduce it further.</p>';
+        }
+    }
+</script>
+
+
+<!-- <script>
+
+document.getElementById('water-usage-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Send data to the Flask backend
+            const response = await fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            // Process the response
+            const result = await response.json();
+            displayResults(result);
+        });
+
+        function displayResults(result) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Results</h2>
+                <p><strong>Daily Water Usage:</strong></p>
+                <ul>
+                    ${Object.entries(result.daily_usages).map(([day, usage]) => `<li>${day}: ${usage} gallons</li>`).join('')}
+                </ul>
+                <p><strong>Total Water Usage for the Week:</strong> ${result.total_weekly_usage} gallons</p>
+                <p><strong>Average Daily Water Usage:</strong> ${result.average_daily_usage} gallons</p>
+                <p>${result.feedback}</p>
+            `;
+        }
+</script> -->
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+
+        body {
+            
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            background-color: rgba(115, 193, 238, 0.8); 
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            max-height:100vh;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            color: #d6dce0;
+            text-align: center;
+        }
+
+       
+        .house-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .house-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 200px;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s;
+        }
+
+        .house-box:hover {
+            background-color: #e0e0e0;
+        }
+
+        .house-box i {
+            font-size: 3em;
+            color: #007acc;
+        }
+
+        .house-box p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .house-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007acc;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #005f9c;
+        }
+    
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007acc;
+    color: #fff;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.widget {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 250px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.widget h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+#usage {
+    font-size: 2.5em;
+    color: #007acc;
+}
+
+#leak-status {
+    font-size: 1.2em;
+    color: green;
+}
+
+.usage-summary ul {
+    list-style: none;
+    padding: 0;
+}
+
+.usage-summary li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.usage-summary span {
+    font-weight: bold;
+    color: #007acc;
+}
+
+}
